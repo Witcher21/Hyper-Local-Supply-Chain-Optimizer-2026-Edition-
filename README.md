@@ -77,4 +77,4 @@ npx quasar dev -p 9001
 Now, simply open `http://localhost:9001` in your browser to experience the future.
 
 ## 🏆 Crafted By
-**G.nawod Sanjana** - Pushing the boundaries of modern, immersive application design.
+**G.Nawod Sanjana** - Pushing the boundaries of modern, immersive application design.
