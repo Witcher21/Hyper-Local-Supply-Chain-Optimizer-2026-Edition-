@@ -1,0 +1,51 @@
+services:
+  # ──────────────────────────────────────────────────────────────────────────
+  # PostgreSQL 16 with PostGIS 3 extension
+  # ──────────────────────────────────────────────────────────────────────────
+  postgres:
+    image: postgis/postgis:16-3.4-alpine
+    container_name: sc_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       supply_chain
+      POSTGRES_USER:     postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d supply_chain"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # FastAPI backend
+  # ──────────────────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sc_api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL:  postgresql+asyncpg://postgres:password@postgres:5432/supply_chain
+      ENVIRONMENT:   development
+      CORS_ORIGINS:  http://localhost:9000,http://localhost:3000
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app          # hot-reload in dev
+    command: >
+      uvicorn main:app
+        --host 0.0.0.0
+        --port 8000
+        --reload
+
+volumes:
+  postgres_data:

@@ -1,0 +1,26 @@
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:             
+remote:       —— Mapbox Secret Access Token ————————————————————————        
+remote:        locations:        
+remote:          - commit: 51c89170a568a3ffafbbf1f3f0c8867fd79af76f        
+remote:            path: .env:5        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/Witcher21/Hyper-Local-Supply-Chain-Optimizer-2026-Edition-/security/secret-scanning/unblock-secret/3AlCNq7GLCrKYFQ8EKajiKV2WBs        
+remote:             
+remote: 
+remote: 
+To https://github.com/Witcher21/Hyper-Local-Supply-Chain-Optimizer-2026-Edition-.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/Witcher21/Hyper-Local-Supply-Chain-Optimizer-2026-Edition-.git'

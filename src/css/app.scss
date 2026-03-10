@@ -1,0 +1,183 @@
+// ── Design System — Hyper-Local Supply Chain Optimizer 2026 ──────────────────
+
+// Color tokens
+:root {
+  --color-bg-primary:    #060b18;
+  --color-bg-surface:    #0c1120;
+  --color-bg-elevated:   #111827;
+  --color-border:        rgba(255, 255, 255, 0.07);
+
+  // Brand
+  --color-accent:        #4a6cf7;
+  --color-accent-glow:   rgba(74, 108, 247, 0.3);
+
+  // Status (neon dopamine palette)
+  --color-on-track:   #00f5a0;
+  --color-delayed:    #ffb800;
+  --color-rerouting:  #ff3b5c;
+  --color-idle:       #8892a4;
+
+  // Glassmorphism
+  --glass-bg:     rgba(8, 14, 32, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-blur:   16px;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Ultra-Premium 3D Synthwave Video-like Background ──────────────────────── */
+body {
+  background-color: #03050a; /* Deep void */
+  color: #e8eaf6;
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── Background is handled in App.vue ──────────────────────── */
+.q-page,
+.q-layout,
+#q-app {
+  background: transparent !important;
+}
+
+// ── Glassmorphism utility ─────────────────────────────────────────────────────
+.glass-panel {
+  background:   rgba(12, 17, 32, 0.45);
+  border:       1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:   0 8px 32px rgba(0, 0, 0, 0.45);
+  border-radius: 16px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(74, 108, 247, 0.15);
+}
+
+// ── Scrollbar ─────────────────────────────────────────────────────────────────
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(255,255,255,0.12); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+
+// ── Quasar overrides ──────────────────────────────────────────────────────────
+.q-drawer    { background: var(--color-bg-surface) !important; }
+.q-header    { background: var(--color-bg-surface) !important; }
+
+// ── Page Transitions (Vue Router) ───────────────────────────────────────────
+.page-slide-enter-active,
+.page-slide-leave-active {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-slide-enter-from {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+}
+
+.page-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.98);
+}
+
+// ── Global Micro-Animations & Effects ───────────────────────────────────────
+// Buttons with glowing hover
+.q-btn {
+  transition: all 0.3s ease !important;
+}
+.q-btn--unelevated.bg-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--color-accent-glow) !important;
+}
+
+// Fade in up animation for staggered lists/cards
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  /* Removed opacity: 0 as it was causing issues with Vue Router transitions */
+}
+
+// Staggered delays
+.delay-100 { animation-delay: 100ms; animation-fill-mode: both; }
+.delay-200 { animation-delay: 200ms; animation-fill-mode: both; }
+.delay-300 { animation-delay: 300ms; animation-fill-mode: both; }
+.delay-400 { animation-delay: 400ms; animation-fill-mode: both; }
+.delay-500 { animation-delay: 500ms; animation-fill-mode: both; }
+
+// ── Next-gen glowing textual headers ─────────────────────────────────────────
+h1, h2, h3, .panel-title, .status-bar__label, .main-header__title {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+// ── Pulse animation for live indicators ─────────────────────────────────────
+@keyframes pulseGlow {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 245, 160, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 245, 160, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 245, 160, 0); }
+}
+
+.ws-online .ws-dot, .driver-chip__dot[style*="#00f5a0"] {
+  animation: pulseGlow 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+// ── Ultra-premium Quasar Table Styles ───────────────────────────────────────
+.q-table__container.q-table--dark {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.q-table th {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #9ca3af !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(10, 15, 30, 0.6) !important;
+}
+
+.q-table tbody tr {
+  transition: all 0.25s ease !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+}
+
+.q-table tbody tr:hover {
+  background: rgba(74, 108, 247, 0.08) !important;
+  transform: scale(1.002);
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+.q-table td {
+  font-size: 14px !important;
+  color: #e8eaf6 !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+// ── Inputs & Selects ────────────────────────────────────────────────────────
+.q-field--outlined .q-field__control {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease !important;
+}
+
+.q-field--outlined .q-field__control:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.q-field--focused .q-field__control {
+  box-shadow: 0 0 15px rgba(74, 108, 247, 0.2) !important;
+  border-color: var(--color-accent) !important;
+  background: rgba(10, 15, 30, 0.8) !important;
+}

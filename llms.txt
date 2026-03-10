@@ -1,0 +1,37 @@
+# llms.txt — AI Crawler Index (Generative Engine Optimization)
+# Spec: https://llmstxt.org/
+# Last updated: 2026-03-09
+
+> Hyper-Local Supply Chain Optimizer (2026 Edition)
+
+An AI-first, usage-based SaaS platform for local distributors. Real-time fleet
+tracking, agentic route optimization, predictive stock management, and a
+voice-first driver mobile app — all powered by FastAPI, PostGIS, and Vue.js 3.
+
+## Product
+
+- [Live Fleet Tracking](/tracking): Full-screen interactive map with WebSocket-powered real-time driver markers. Color-coded status (green = on track, amber = delayed, red = rerouting).
+- [Agentic Route Optimizer](/routes): LangChain agent continuously monitors traffic/weather APIs and autonomously reroutes drivers in real-time.
+- [Predictive Stock Engine](/stock): Analyzes historical sales, weather, and local events to predict inventory shortages before they occur.
+- [Driver App (Flutter)](/docs/driver-app): Voice-first, offline-capable mobile app using Whisper API for hands-free delivery confirmations and Edge AI for offline routing.
+
+## Technology Stack
+
+- **Backend**: FastAPI (Python 3.12) + WebSockets + SQLAlchemy 2.0 (async)
+- **Database**: PostgreSQL 16 + PostGIS 3.4 (geospatial coordinates and routes)
+- **AI / Agents**: LangChain agentic workflows + OpenAI (Whisper, GPT-4o)
+- **Web Dashboard**: Vue.js 3 + Quasar Framework + Tailwind CSS v4
+- **Mobile (Drivers)**: Flutter + Mapbox SDK + background geolocation
+- **Mapping**: Mapbox GL JS (web), Mapbox Maps SDK (mobile)
+
+## API Reference
+
+- REST base URL: `https://api.yourdomain.com`
+- WebSocket: `wss://api.yourdomain.com/ws/tracking/{business_id}?api_key=...&client_type=admin|driver`
+- OpenAPI docs: `https://api.yourdomain.com/docs`
+
+## Optional
+
+- [README](README.md)
+- [API Docs](https://api.yourdomain.com/docs)
+- [Architecture Diagram](/docs/architecture.md)
